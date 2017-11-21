@@ -1,36 +1,34 @@
 <template>
   <div class="home">
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
-    <my-tunes class="my-tunes"></my-tunes>
-    <itunes class="itunes"></itunes>
+    <div class="row header">
+      <div class="col-xs-12 text-center">
+        <h1>
+          <em>Music</em> is Freedom</h1>
+      </div>
+    </div>
+   
+
+    <i-tunes class="i-tunes">
+
+    </i-tunes>
+    <!-- <my-tunes class="my-tunes"> -->
+
+    <!-- </my-tunes> -->
   </div>
 </template>
 
 <script>
-export default {
-  name: 'home',
-  data () {
-    return {
-      
+  import ITunes from './ITunes'
+  // import MyTunes from './MyTunes'
+  export default {
+    components: {
+      ITunes,
+      // MyTunes
     }
   }
-}
 </script>
 
 
 <style>
-.my-tunes{
-  display: inline-block;
-  min-height: 500px;
-  min-width: 50%;
-  background: green;
-}
-
-.itunes{
-  display: inline-block;
-  background: red;
-  min-height: 500px;
-  min-width: 45%;
-}
-
 </style>

@@ -19,17 +19,39 @@ var store = new vuex.Store({
       var url = '//bcw-getter.herokuapp.com/?url=';
       var url2 = 'https://itunes.apple.com/search?term=' + artist;
       var apiUrl = url + encodeURIComponent(url2);
-      $.get(apiUrl).then(data=>{
-        commit('setResults', data)
+      $.getJSON(apiUrl).then(response => {
+        
+        var songList = response.results.map(function (song) {
+          return {
+            title: song.trackName,
+            albumArt: song.artworkUrl60,
+            kind: song.kind,
+            artist: song.artistName,
+            album: song.collectionName,
+            price: song.collectionPrice,
+            preview: song.previewUrl
+          };
+        })
+        console.log(songList)
+        
+
+        commit('setResults', songList)
       })
     },
-    getMyTunes({commit, dispatch}){
+    getMyPlaylists({commit, dispatch}){
+      var url= '//localhost:3000/api/playlists'
       //this should send a get request to your server to return the list of saved tunes
     },
-    addToMyTunes({commit, dispatch}, track){
+    getPlaylist({commit, dispatch,}, playlist){
+      var url = '//localhost:3000/api/playlists/:id'
+    },
+    addToPlaylist({commit, dispatch}, song){
+      var url = '//localhost:3000/api/myTunes'
+      $.post(url)
       //this will post to your server adding a new track to your tunes
     },
-    removeTrack({commit, dispatch}, track){
+    removeSong({commit, dispatch}, song){
+      var url = '//localhost:3000/api/myTunes/:id'
       //Removes track from the database with delete
     },
     promoteTrack({commit, dispatch}, track){
