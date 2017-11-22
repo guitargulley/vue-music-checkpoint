@@ -8,18 +8,24 @@ var store = new vuex.Store({
   state: {
     results: [],
     myTunes: [],
-    playlists:[]
+    playlists:[],
+    activePlaylist:{}
   },
   mutations: {
+    //this one works
     setResults(state, results){
       state.results = results
     },
+    // this one works
     setPlaylists(state, playlists ){
       state.playlists = playlists
     },
-    setPlaylist(state, res){
-      state.playlists[playlist] = res
+    //this one works
+    setPlaylist(state, playlist){
+      state.activePlaylist = playlist
+      console.log(state.activePlaylist)
     },
+    // this one works
     addNewPlaylist(state, playlist){
       state.playlists.push(playlist)
       console.log(state.playlists)
@@ -51,7 +57,7 @@ var store = new vuex.Store({
         commit('setResults', songList)
       })
     },
-
+    //this one populates the selector box with all playlists
     getPlaylists({commit, dispatch}, playlists){
       var url= '//localhost:3000/api/playlists'
       console.log('you got here')
@@ -61,12 +67,13 @@ var store = new vuex.Store({
           commit('setPlaylists', playlists)          
         })
     },
-
-    getPlaylist({commit, dispatch,}, playlist){
-      var url = '//localhost:3000/api/playlists/:id'
-      $.get(url).then(res => {
+    //this one works to display the selected playlist
+    changeActivePlaylist({commit, dispatch,}, playlist){
+      var url= '//localhost:3000/api/playlists/:id/myTunes'
+      $.get(url)
+      .then(playlist => {
         commit('setPlaylist', playlist)
-      })    
+      })       
     },
 
 

@@ -2,10 +2,13 @@
 var MyTunes = require('../models/myTune')
 var router = require('express').Router()
 
+
 router.get('/api/myTunes', (req, res, next) => {
     MyTunes.find({})
-        .then(myTunes => res.send(myTunes))
-        .catch(err => res.status(400).send(err))
+        .then(myTunes => {
+            res.send(myTunes)
+        })
+        .catch(err => res.statusCode(400).send(err))
 })
 
 router.post('/api/myTunes', (req, res, next) => {

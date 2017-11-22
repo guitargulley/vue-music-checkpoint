@@ -2,18 +2,28 @@
     <div>
         <div class="row">
             <div class="col-xs-12">
+                <button class="btn btn-default" @click="getPlaylists" v-model="playlists">Show Playlists</button>
                 <form @submit.prevent="addNewPlaylist">
                     <input type="text" placeholder="Playlist Name" v-model="newPlaylist.name">
                     <button class="btn btn-default" type="submit">Create New Playlist</button>
                 </form>
             </div>
         </div>
-        <div v-for="playlist in playlists" class="row">
+        <!-- <div v-for="playlist in playlists" class="row">
             <div class="col-xs-12">
-                <button @click="getPlaylist">{{playlist}}</button>
+                <button @click="getPlaylist">{{playlist.name}}</button>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-xs-12">
+                <form @submit.prevent="setActivePlaylist">
+                    <select @change="setActivePlaylist" v-model="selectedPlaylist">
+                        <option :value="playlist" v-for="playlist in playlists">{{playlist.name}}</option>
+                    </select>
+                </form>
             </div>
         </div>
-        <div v-for="song in myTunes" class="row text-center song">
+        <div v-for="song in activePlaylist" class="row text-center song">
             <div class="col-md-3 col-md-offset-1 col-xs-12">
                 <img class="album-art" :src="song.albumArt">
             </div>
@@ -36,12 +46,23 @@
         name: 'MyTunes',
         data() {
             return {
-                newPlaylist:{}
+                newPlaylist: {},
+                selectedPlaylist:{},
             }
         },
         methods: {
-            getPlaylist() {
-                this.$store.dispatch('getPlaylist', this.artist)
+            //this one works
+            getPlaylists(){
+                // this.selectedPlaylist = {}
+                this.$store.dispatch('getPlaylists')
+            },
+            //this one works
+            setActivePlaylist() {
+                debugger
+                console.log(this.selectedPlaylist)
+                this.$store.dispatch('changeActivePlaylist', this.selectedPlaylist)
+                // this.selectedPlaylist = {}
+                console.log(this.selectedPlaylist)
             },
 
             //THIS ONE MOSTLY WORKS!!!!!!!
@@ -61,8 +82,8 @@
             playlists() {
                 return this.$store.state.playlists
             },
-            playlist() {
-                return this.$store.state.playlist
+            activePlaylist() {
+                return this.$store.state.activePlaylist
             }
         },
 

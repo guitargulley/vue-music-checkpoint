@@ -9,7 +9,8 @@ var schema = new mongoose.Schema({
     artist: { type: String, required: true },
     album: { type: String, required: true },
     preview: { type: String, required: true },
-    playListId: {type: ObjectId, required: true, ref: 'Playlist' }
+    playListId: {type: ObjectId, required: true, ref: 'Playlist' },
+    rank:{type: Number, required: true, default: 0}
    
 });
 
