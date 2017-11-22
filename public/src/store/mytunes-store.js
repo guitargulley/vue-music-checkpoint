@@ -17,8 +17,12 @@ var store = new vuex.Store({
     setPlaylists(state, playlists ){
       state.playlists = playlists
     },
-    setPlaylist(state, playlist){
-      state.playlists[playlist] = playlist
+    setPlaylist(state, res){
+      state.playlists[playlist] = res
+    },
+    addNewPlaylist(state, playlist){
+      state.playlists.push(playlist)
+      console.log(state.playlists)
     }
   },
   actions: {
@@ -48,6 +52,7 @@ var store = new vuex.Store({
 
     getPlaylists({commit, dispatch}, playlists){
       var url= '//localhost:3000/api/playlists'
+      console.log('you got here')
       //this should send a get request to your server to return the list of saved tunes
       $.get(url)
         .then(playlists => {
@@ -57,19 +62,26 @@ var store = new vuex.Store({
 
     getPlaylist({commit, dispatch,}, playlist){
       var url = '//localhost:3000/api/playlists/:id'
-      $.get(url).then(playlist => {
+      $.get(url).then(res => {
         commit('setPlaylist', playlist)
       })    
     },
     addNewPlaylist({commit, dispatch}, newPlaylist){
       var url = '//localhost:3000/api/playlists'
-      $.post(url).then(res => {
-        dispatch('getPlaylists')
+      // var data = {
+      //   name: newPlaylist.name
+      // }
+      console.log('data', newPlaylist)
+      $.post(url, newPlaylist).then(playlist => {
+        // dispatch('getPlaylists')
+        console.log(playlist)
+        commit('addNewPlaylist', playlist)
+        // dispatch('getPlayLists')
       })
     },
     addToPlaylist({commit, dispatch}, song){
       var url = '//localhost:3000/api/myTunes'
-      $.post(url).then(res => 
+      $.post(url, song).then(res => 
         dispatch('getPlaylist'))
         
       //this will post to your server adding a new track to your tunes

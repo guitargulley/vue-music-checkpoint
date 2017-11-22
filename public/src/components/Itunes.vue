@@ -39,6 +39,7 @@
         },
         methods: {
             getMusicByArtist(artist) {
+                debugger
                 this.$store.dispatch('getMusicByArtist', this.artist)
             },
             addToPlaylist(song){
