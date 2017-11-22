@@ -18,5 +18,12 @@ router.post('/api/playlists', (req, res, next) => {
         .then(playlist => res.send(playlist))
         .catch(err => res.status(400).send(err))
 })
+router.delete('/api/playlists/:id', (req, res) => {
+    Playlists.findOneAndRemove(req.params.id)
+    .then((playlist) => {
+        res.send({ message: 'Successfully removed playlist at ' + req.params.id })
+    })
+    .catch(err => res.status(400).send(err))
+})
 
 module.exports = router

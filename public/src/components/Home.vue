@@ -12,23 +12,38 @@
     <i-tunes class="i-tunes">
 
     </i-tunes>
-    <!-- <my-tunes class="my-tunes"> -->
+    <my-tunes class="my-tunes">
 
-    <!-- </my-tunes> -->
+    </my-tunes>
   </div>
 </template>
 
 <script>
   import ITunes from './ITunes'
-  // import MyTunes from './MyTunes'
+  import MyTunes from './MyTunes'
+
   export default {
     components: {
       ITunes,
-      // MyTunes
+      MyTunes
     }
   }
 </script>
 
 
 <style>
+  .my-tunes{
+  display: inline-block;
+  min-height: 500px;
+  min-width: 50%;
+  background: whitesmoke;
+  color: black;
+}
+.i-tunes{
+  display: inline-block;
+  background:whitesmoke;
+  color:black;
+  min-height: 500px;
+  min-width: 45%;
+}
 </style>

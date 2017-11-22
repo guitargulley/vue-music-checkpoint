@@ -6,12 +6,19 @@ vue.use(vuex)
 
 var store = new vuex.Store({
   state: {
+    results: [],
     myTunes: [],
-    results: []
+    playlists:[]
   },
   mutations: {
     setResults(state, results){
       state.results = results
+    },
+    setPlaylists(state, playlists ){
+      state.playlists = playlists
+    },
+    setPlaylist(state, playlist){
+      state.playlists[playlist] = playlist
     }
   },
   actions: {
@@ -38,21 +45,42 @@ var store = new vuex.Store({
         commit('setResults', songList)
       })
     },
-    getMyPlaylists({commit, dispatch}){
+
+    getPlaylists({commit, dispatch}, playlists){
       var url= '//localhost:3000/api/playlists'
       //this should send a get request to your server to return the list of saved tunes
+      $.get(url)
+        .then(playlists => {
+          commit('setPlaylists', playlists)          
+        })
     },
+
     getPlaylist({commit, dispatch,}, playlist){
       var url = '//localhost:3000/api/playlists/:id'
+      $.get(url).then(playlist => {
+        commit('setPlaylist', playlist)
+      })    
+    },
+    addNewPlaylist({commit, dispatch}, newPlaylist){
+      var url = '//localhost:3000/api/playlists'
+      $.post(url).then(res => {
+        dispatch('getPlaylists')
+      })
     },
     addToPlaylist({commit, dispatch}, song){
       var url = '//localhost:3000/api/myTunes'
-      $.post(url)
+      $.post(url).then(res => 
+        dispatch('getPlaylist'))
+        
       //this will post to your server adding a new track to your tunes
     },
     removeSong({commit, dispatch}, song){
       var url = '//localhost:3000/api/myTunes/:id'
       //Removes track from the database with delete
+      $.ajax({
+        method: 'DELETE',
+        url: url
+      }).then(res => dispatch('getPlaylist'))
     },
     promoteTrack({commit, dispatch}, track){
       //this should increase the position / upvotes and downvotes on the track
