@@ -43,6 +43,8 @@
             getPlaylist() {
                 this.$store.dispatch('getPlaylist', this.artist)
             },
+
+            //THIS ONE MOSTLY WORKS!!!!!!!
             addNewPlaylist() {
                 debugger
                 this.$store.dispatch('addNewPlaylist', this.newPlaylist)

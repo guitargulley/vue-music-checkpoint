@@ -26,6 +26,8 @@ var store = new vuex.Store({
     }
   },
   actions: {
+
+    // this one works!
     getMusicByArtist({commit, dispatch}, artist) {
       var url = '//bcw-getter.herokuapp.com/?url=';
       var url2 = 'https://itunes.apple.com/search?term=' + artist;
@@ -66,6 +68,9 @@ var store = new vuex.Store({
         commit('setPlaylist', playlist)
       })    
     },
+
+
+    //THIS ONE MOSTLY WORKS!!!!!!!
     addNewPlaylist({commit, dispatch}, newPlaylist){
       var url = '//localhost:3000/api/playlists'
       // var data = {
