@@ -35,13 +35,14 @@ var store = new vuex.Store({
         var songList = response.results.map(function (song) {
           return {
             title: song.trackName,
-            albumArt: song.artworkUrl60,
+            albumArt: `${song.artworkUrl60.replace('60x60bb', '400x400bb')}`,
             kind: song.kind,
             artist: song.artistName,
             album: song.collectionName,
             price: song.collectionPrice,
             preview: song.previewUrl
           };
+        
         })
         console.log(songList)
 

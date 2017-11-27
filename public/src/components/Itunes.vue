@@ -12,20 +12,17 @@
                     </form>
                 </div>
             </div>
-            <div v-for="song in results" class="row text-center song">
-                <div class="col-md-12">
+            <div class="row text-center ">
+                <div v-for="song in results" class="col-md-4 col-md-offset-1 song">
                     <h4>{{song.price}}</h4>
-                    <img class="album-art" :src="song.albumArt">
-                </div>
-                <div class="col-md-3 col-md-offset-2 text-right">
                     <i class="glyphicon glyphicon-plus pull-right" @click="addToMyTunes(song)"></i>
+                    <audio controls class="audio">
+                        <source :src="song.preview" type="audio/mpeg">
+                    </audio>
                     <h2>{{song.title}}</h2>
                     <h3>{{song.artist}}</h3>
                     <h4>{{song.album}}</h4>
-                    <audio controls class="audio">
-                        <source :src="song.preview" type="audio/ogg">
-                        <source :src="song.preview" type="audio/mpeg">
-                    </audio>
+                    <img class="album-art" :src="song.albumArt">
                 </div>
             </div>
         </div>

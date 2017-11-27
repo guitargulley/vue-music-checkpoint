@@ -1,21 +1,24 @@
 <template>
-  <div class="home container">
-    <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
-    <div class="row header">
-      <div class="col-xs-12 text-center">
-        <h1>
-          <em>Music</em> is Freedom</h1>
+  <div class="home">
+    <div class="container">
+      <div class="row header">
+        <div class="col-xs-12 text-center">
+          <h1>
+            <em>Music</em> is Freedom</h1>
+        </div>
       </div>
-    </div>
+      
+      <div class="row">
+        <my-tunes class="my-tunes col-md-12">
+        </my-tunes>
+      <div class="row">
+        <i-tunes class="i-tunes col-md-12">
+        </i-tunes>
+      </div>
+      </div>
 
-    <div class="row">
-      <i-tunes class="i-tunes col-xs-6">
-      </i-tunes>
     </div>
-    <div class="row">
-      <my-tunes class="my-tunes col-xs-6">
-      </my-tunes>
-    </div>
+    <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
   </div>
 </template>
 
@@ -33,22 +36,44 @@
 
 
 <style>
+  .home{
+    background-color:black;
+  }
+  .header h1{
+    font-size: 100px;
+    color: rgb(179, 162, 162);
+    text-shadow: 5px 5px 15px whitesmoke
+
+  }
   .my-tunes {
     display: inline-block;
-
-    background: whitesmoke;
-    color: black;
   }
 
   .i-tunes {
     display: inline-block;
-    background: whitesmoke;
-    color: black;
 
   }
 
   .song {
+    padding-top: 70px;
     margin-top: 10px;
-    border: 1px solid black;
+    min-height: 600px;
+    min-width: 450px;
+    border: 10px ridge grey;
+    border-radius: 2px;
+    background-color: rgb(179, 162, 162);
+    color:black;
+  }
+  .song:hover{
+    box-shadow: 0px 0px 40px whitesmoke;
+  }
+  .song img{
+    width: 200px;
+  }
+  .song i{
+    font-size: 30px;
+  }
+  .song i:hover{
+    text-shadow: 0px 0px 10px white
   }
 </style>
