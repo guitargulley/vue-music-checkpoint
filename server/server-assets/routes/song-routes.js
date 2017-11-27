@@ -9,7 +9,7 @@ var router = require('express').Router()
 
 //Get all stored songs
 
-router.get('/api/songs/', (req, res, next) => {
+router.get('/api/songs', (req, res, next) => {
     Songs.find({})
         .then(songs => {
             res.send(songs)
@@ -19,23 +19,16 @@ router.get('/api/songs/', (req, res, next) => {
 
 //Get Specific song
 
-router.get('/api/songs/:songId', (req, res, next) => {
-    Songs.findById(req.params.songId)
+router.get('/api/songs/:id', (req, res, next) => {
+    Songs.findById(req.params.id)
         .then(song => {
-            req.send(song)
+            res.send(song)
         })
         .catch(err => res.status(400).send('ERROR:', err))
 })
 
-//Get all songs from specific Playlist
 
-router.get('/api/playlists/:playlistId/songs', (req, res, next) => {
-    Songs.find({playlistId: req.params.playlistId})
-        .then(songs => {
-            req.send(songs)
-        })
-        .catch(err => res.status(400).send('ERROR:', err))
-})
+
 
 // ALL POST REQUESTS HERE -->
 
@@ -53,8 +46,8 @@ router.post('/api/songs', (req, res, next) => {
 //ALL DELETE REQUESTS HERE -->
 
 //Delete song from database
-router.delete('/api/songs/:songId', (req, res, next) => {
-    Songs.findByIdAndRemove(req.params.songId)
+router.delete('/api/songs/:id', (req, res, next) => {
+    Songs.findByIdAndRemove(req.params.id)
         .then((song) => {
             song.remove()
             res.send({ message: 'Successfully removed song at ' + req.params.id })
@@ -64,9 +57,10 @@ router.delete('/api/songs/:songId', (req, res, next) => {
 
 //UPDATE SONG RATINGS
 
-router.put('/api/songs/:songId', (req, res, next) => {
-    console.log(req.body.rating)
-    Songs.findByIdAndUpdate(req.params.songId, req.body)
+router.put('/api/songs/:id', (req, res, next) => {
+    console.log('you got here')
+    
+    Songs.findByIdAndUpdate(req.params.id, req.body)
         .then(() => {
             res.send('Your ranking has been updated!')
         })

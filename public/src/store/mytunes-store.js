@@ -92,9 +92,12 @@ var store = new vuex.Store({
     },
     increaseRating({ commit, dispatch }, song){
       console.log(song)
+     
+     
       var url = '//localhost:3000/api/songs/' + song._id
       $.ajax({
         method: 'PUT',
+        contentType: 'application/json',
         url: url,
         data: JSON.stringify(song)
       })
@@ -105,10 +108,12 @@ var store = new vuex.Store({
     },
     lowerRating({commit, dispatch}, song){
       var url = '//localhost:3000/api/songs/' + song._id
-      console.log(song.rating)
+     
+      
       $.ajax({
         method: 'PUT',
         url: url,
+        contentType: 'application/json',
         data: JSON.stringify(song)
       })
       .then(res => {

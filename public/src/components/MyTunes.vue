@@ -12,7 +12,7 @@
             <div class="col-md-6 col-md-offset-2 col-xs-12 text-right">
                 <h5>Rating: {{song.rating}}</h5>
                 <i class="glyphicon glyphicon-chevron-up" @click="increaseRating(song)"></i>
-                <button class="btn btn-default"@click="removeFromPlaylist(song)">Delete</button>
+                <button class="btn btn-default" @click="removeFromPlaylist(song)">Delete</button>
                 <i class="glyphicon glyphicon-chevron-down" @click="lowerRating(song)"></i>
                 <h2>{{song.title}}</h2>
                 <h3>{{song.artist}}</h3>
@@ -32,12 +32,12 @@
         data() {
             return {
                 newPlaylist: {},
-                selectedPlaylist:{},
+                selectedPlaylist: {},
             }
         },
         methods: {
             //this one works
-            getPlaylist(){
+            getPlaylist() {
                 // this.selectedPlaylist = {}
                 this.$store.dispatch('getMyTunes')
             },
@@ -46,13 +46,13 @@
             removeFromPlaylist(song) {
                 this.$store.dispatch('removeFromMyTunes', song)
             },
-            increaseRating(song){
-                song.rating += 1
+            increaseRating(song) {
+                song.rating++
                 this.$store.dispatch('increaseRating', song)
             },
-            lowerRating(song){
-                if(song.rating != 0){
-                    song.rating -=1
+            lowerRating(song) {
+                if (song.rating != 0) {
+                    song.rating--
                 }
                 this.$store.dispatch('lowerRating', song)
             }
