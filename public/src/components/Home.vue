@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home container">
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
     <div class="row header">
       <div class="col-xs-12 text-center">
@@ -8,13 +8,14 @@
       </div>
     </div>
 
-
-    <i-tunes class="i-tunes">
-    </i-tunes>
-
-    <my-tunes class="my-tunes">
-
-    </my-tunes>
+    <div class="row">
+      <i-tunes class="i-tunes col-xs-6">
+      </i-tunes>
+    </div>
+    <div class="row">
+      <my-tunes class="my-tunes col-xs-6">
+      </my-tunes>
+    </div>
   </div>
 </template>
 
@@ -34,8 +35,7 @@
 <style>
   .my-tunes {
     display: inline-block;
-    /* min-height: 500px;
-    max-width: 50%; */
+
     background: whitesmoke;
     color: black;
   }
@@ -44,10 +44,10 @@
     display: inline-block;
     background: whitesmoke;
     color: black;
-    /* min-height: 500px;
-    max-width: 45%; */
+
   }
-  .song{
+
+  .song {
     margin-top: 10px;
     border: 1px solid black;
   }
