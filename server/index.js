@@ -6,8 +6,8 @@ var server = express()
 var port = 3000
 
 //route variables
-var myTunesRoutes = require('./server-assets/routes/myTunes-routes')
-var playlistsRoutes = require('./server-assets/routes/playlists-routes')
+var songRoutes = require('./server-assets/routes/song-routes')
+
 
 //middleware
 server.use(cors({}))
@@ -16,16 +16,7 @@ server.use(bp.urlencoded({ extended: true }))
 
 
 //routes
-server.use(myTunesRoutes)
-server.use(playlistsRoutes)
-
-//get mytunes(get)
-
-//add song to list (post)
-
-// update ranking (put)
-
-// delete song (delete)
+server.use(songRoutes)
 
 
 server.listen(port, () => {

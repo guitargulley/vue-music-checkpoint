@@ -7,11 +7,11 @@
           <em>Music</em> is Freedom</h1>
       </div>
     </div>
-   
+
 
     <i-tunes class="i-tunes">
-
     </i-tunes>
+
     <my-tunes class="my-tunes">
 
     </my-tunes>
@@ -32,18 +32,23 @@
 
 
 <style>
-  .my-tunes{
-  display: inline-block;
-  min-height: 500px;
-  min-width: 50%;
-  background: whitesmoke;
-  color: black;
-}
-.i-tunes{
-  display: inline-block;
-  background:whitesmoke;
-  color:black;
-  min-height: 500px;
-  min-width: 45%;
-}
+  .my-tunes {
+    display: inline-block;
+    /* min-height: 500px;
+    max-width: 50%; */
+    background: whitesmoke;
+    color: black;
+  }
+
+  .i-tunes {
+    display: inline-block;
+    background: whitesmoke;
+    color: black;
+    /* min-height: 500px;
+    max-width: 45%; */
+  }
+  .song{
+    margin-top: 10px;
+    border: 1px solid black;
+  }
 </style>
