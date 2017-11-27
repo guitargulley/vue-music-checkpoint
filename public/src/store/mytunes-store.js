@@ -21,7 +21,8 @@ var store = new vuex.Store({
         return b.rating - a.rating
       })
       state.myTunes = songs
-    }
+    },
+    
   },
   actions: {
 

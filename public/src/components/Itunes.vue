@@ -4,6 +4,7 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center selection-area">
+                    <h1>SEARCH FOR NEW ARTISTS!</h1>
                     <form @submit.prevent="getMusicByArtist" class="form-inline">
                         <div class="form-group">
                             <input type="text" class="form-control" v-model="artist" placeholder="Artist's Name">
@@ -39,16 +40,16 @@
         },
         methods: {
             getMusicByArtist(artist) {
-                debugger
                 this.$store.dispatch('getMusicByArtist', this.artist)
             },
             addToMyTunes(song) {
                 console.log('you got here')
                 console.log(this.$store.state.myTunes)
-                
+
                 this.$store.dispatch('addToMyTunes', song)
 
-            }
+            },
+           
         },
         computed: {
             results() {
